@@ -72,8 +72,8 @@ def fetch_arxiv(keyword: str) -> list[dict]:
             continue
 
         arxiv_id = entry.findtext("atom:id", default="", namespaces=ns).strip()
-        title    = entry.findtext("atom:title", default="").strip().replace("\n", " ")
-        abstract = entry.findtext("atom:summary", default="").strip().replace("\n", " ")
+        title    = entry.findtext("atom:title", default="", namespaces=ns).strip().replace("\n", " ")
+        abstract = entry.findtext("atom:summary", default="", namespaces=ns).strip().replace("\n", " ")
         authors  = [
             a.findtext("atom:name", namespaces=ns, default="")
             for a in entry.findall("atom:author", ns)
